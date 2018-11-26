@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 """ anagrams
     Command line interface that accepts a word file and returns a dictionary of
     anagrams for that file.
@@ -5,8 +8,11 @@
     Module provides a function find_anagrams which can be used to do the same
     for an arbitrary list of strings.
 
+    Author: Aaron Jackson
 """
 import sys
+
+__author__ = '__TimeApollo__'
 
 
 def alphabetize(string):
@@ -35,11 +41,20 @@ def find_anagrams(words):
         {'dgo': ['dog'], 'act': ['cat', 'act']}
 
     """
-    anagrams = {
-        alphabetize(word): [
-            w for w in words
-            if alphabetize(w) == alphabetize(word)]
-        for word in words}
+    # Given solution that needed to be adjusted to perform better
+    # anagrams = {
+    #     alphabetize(word): [
+    #         w for w in words
+    #         if alphabetize(w) == alphabetize(word)]
+    #     for word in words}
+
+    anagrams = {}
+    for word in words:
+        if alphabetize(word) in anagrams:
+            anagrams[alphabetize(
+                word)].append(word)
+        else:
+            anagrams[alphabetize(word)] = [word]
     return anagrams
 
 
